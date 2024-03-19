@@ -1,2 +1,4 @@
-package actcodigolimpio;public class Rectangle {
+package actcodigolimpio;
+
+public class Rectangle {
 }

@@ -1,2 +1,4 @@
-package actcodigolimpio;public class Shape {
+package actcodigolimpio;
+
+public class Shape {
 }

@@ -1,2 +1,4 @@
-package actcodigolimpio;public class Triangle {
+package actcodigolimpio;
+
+public class Triangle {
 }

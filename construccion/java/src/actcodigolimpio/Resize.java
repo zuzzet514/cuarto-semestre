@@ -1,2 +1,4 @@
-package actcodigolimpio;public interface Resize {
+package actcodigolimpio;
+
+public interface Resize {
 }
