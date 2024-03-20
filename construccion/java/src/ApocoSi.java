@@ -58,42 +58,6 @@ public class ApocoSi {
             }
         } */
 
-        if (a <= b) {
-            numbers[0] = a;
 
-            if (b<= c) {
-                numbers[1] = b;
-                numbers[2] = c;
-            } else {
-                numbers[1] = c;
-                numbers[2] = b;
-            }
-        } else {
-            if (b <= c) {
-                numbers[0] = b;
-
-                if (c<=a) {
-                    numbers[1] = c;
-                    numbers[2] = a;
-                } else {
-                    numbers[1] = a;
-                    numbers[2] = c;
-                }
-            } else {
-                numbers[0] = c;
-
-                if (a >= b) {
-                    numbers[1] = b;
-                    numbers[2] = a;
-                } else {
-                    numbers[1] = a;
-                    numbers[2] = b;
-                }
-            }
-        }
-
-        for (int i: numbers) {
-            System.out.println(i);
-        }
     }
 }
