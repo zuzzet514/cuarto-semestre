@@ -1,14 +1,18 @@
 package actcodigolimpio;
 
 public abstract class Shape {
-    private byte numberOfSides;
+    private short numberOfSides;
 
-    public Shape(byte numberOfSides) {
-        this.numberOfSides = numberOfSides;
+    public Shape() {
+
     }
 
-    public byte getNumberOfSides() {
+    public short getNumberOfSides() {
         return numberOfSides;
+    }
+
+    public void setNumberOfSides(short numberOfSides) {
+        this.numberOfSides = numberOfSides;
     }
 
     public abstract double getArea();
