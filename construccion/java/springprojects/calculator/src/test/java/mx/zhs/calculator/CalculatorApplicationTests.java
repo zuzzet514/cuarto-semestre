@@ -1,15 +1,13 @@
-package test.java.mx.zhs.helloworld;
+package mx.zhs.calculator;
 
-/*
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class HelloworldApplicationTests {
+class CalculatorApplicationTests {
 
 	@Test
 	void contextLoads() {
 	}
 
 }
-*/

@@ -1,5 +1,5 @@
-package mx.zhs.helloworld;
-
+package main.java.mx.zhs.helloworld;
+/*
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,3 +27,4 @@ public class HelloworldApplication implements CommandLineRunner {
 		System.out.println(firstNumber + " + " + secondNumber + " =" + result);
 	}
 }
+*/
