@@ -2,11 +2,10 @@ package exceptionhandling;
 
 import java.util.Scanner;
 
-public class QuotientWithMethod {
+public class QuotientWithException {
     public static int quotient(int number1, int number2) {
         if (number2 == 0) {
-            System.out.println("Divisor cannot be zero");
-            System.exit(1);
+            throw new ArithmeticException("Divisor cannot be zero");
         }
         return number1 / number2;
     }
@@ -19,7 +18,13 @@ public class QuotientWithMethod {
         int number1 = input.nextInt();
         int number2 = input.nextInt();
 
-        int result = quotient(number1,number2);
-        System.out.println(number1 + " / " + number2 + " is " + result);
+        try {
+            int result = quotient(number1, number2);
+            System.out.println(number1 + " / " + number2 + " is " + result);
+        } catch (ArithmeticException ex) {
+            System.out.println("Exception: an integer cannot be divided by zero");
+        }
+
+        System.out.println("Execution continues ...");
     }
 }
