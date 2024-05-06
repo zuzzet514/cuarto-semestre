@@ -1,18 +1,20 @@
-// obtener beca, requisitos: tener entre 18 y 25 años, ser de México y tener un promeddio mayor a 8
+// obtener beca, requisitos: tener entre 18 y 25 años, ser de México y tener un promeddio mayor a 8.5
 const estudiante = {
     edad: 25,
     pais: "México",
     promedio: 8.7
 }
 
+let monto;
+
 function mandarCorreo() {
     console.log()
 }
 
-if (estudiante.edad >= 18  && estudiante.edad <= 25 && estudiante.pais === "México" && (estudiante.promedio>= 8.0 && estudiante.promedio <= 10.0)) {
-    console.log("¡Obtuviste la beca! :D")
+if (estudiante.edad >= 18  && estudiante.edad <= 25 && estudiante.pais === "México" && (estudiante.promedio>= 8.5 && estudiante.promedio <= 10.0)) {
+    monto = 10000.00
 } else {
-    console.log("No obtuviste la beca :(")
+    monto = 0;
 }
 
 function tieneEdadRequerida(edad) {
@@ -32,7 +34,7 @@ function esAcreedor(estudiante) {
 }
 
 if (esAcreedor(estudiante)) {
-    console.log("Eres acreedor de la beca")
+    monto = 10000.00
 } else {
-    console.log("No eres acreedor")
+    monto = 0;
 }
