@@ -10,8 +10,11 @@ let monto;
 function mandarCorreo() {
     console.log()
 }
-
-if (estudiante.edad >= 18  && estudiante.edad <= 25 && estudiante.pais === "México" && (estudiante.promedio>= 8.5 && estudiante.promedio <= 10.0)) {
+// obtener beca, requisitos: tener entre 18 y 25 años, ser de México y
+// tener un promeddio mayor a 8.5
+if (estudiante.edad >= 18  && estudiante.edad <= 25 &&
+    estudiante.pais === "México" &&
+    (estudiante.promedio>= 8.5 && estudiante.promedio <= 10.0)) {
     monto = 10000.00
 } else {
     monto = 0;
@@ -30,7 +33,9 @@ function tienePromedioRequerido(promedio) {
 }
 
 function esAcreedor(estudiante) {
-    return  tieneEdadRequerida(estudiante.edad) && esMexicano(estudiante.pais) && tienePromedioRequerido(estudiante.promedio)
+    return  tieneEdadRequerida(estudiante.edad)
+        && esMexicano(estudiante.pais)
+        && tienePromedioRequerido(estudiante.promedio)
 }
 
 if (esAcreedor(estudiante)) {

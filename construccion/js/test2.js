@@ -4,24 +4,26 @@ let monto = 34;
 
 function porcentajeDescuentoo() {
     if (transeunte.condicion === "embarazada") {
-        return 0.2
+        return 0.3
     }
     if (transeunte.condicion === "tercera edad") {
-        return 0.2
+        return 0.3
     }
 
     if (transeunte.condicion === "niño") {
-        return 0.2
+        return 0.3
     }
 
     if (transeunte.condicion === "discapacidad") {
-        return 0.2
+        return 0.3
     }
 
     if (transeunte.escolaridad === "superior") {
-        return 0.3
+        return 0.2
     }
 }
+
+porcentajeDescuentoo();
 
 // una sola expresion
 function aplicaDescuentoCondicion(condicion) {
@@ -40,6 +42,7 @@ function porcentajeDescuento() {
         return 0.3
     }
 }
+function funcionDeRelleno() {}
 
 // ej 3
 let monto = 500;
@@ -50,9 +53,12 @@ if (aplicaDescuentoCondicion()) {
     mandarCorreo(monto);
 } else {
     mandarCorreo(monto)
+    funcionDeRelleno()
 }
 
 if (aplicaDescuentoCondicion()) {
     monto = monto - (monto * porcentajeDescuento())
+} else {
+    funcionDeRelleno()
 }
 mandarCorreo(monto)
