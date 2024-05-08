@@ -6,11 +6,11 @@ public class Calculator {
     }
 
     public void add (int number) {
-        this.value = this.value + number;
+        this.value += number;
     }
 
     public void substract(int number) {
-        this.value = this.value + number;
+        this.value -= number;
     }
 
     public int getValue() {
