@@ -43,77 +43,120 @@ class AddressBookTest {
     }
 
     @Test
-    void testAddressEntryWithValidData() {
+    void testAddressEntryWithValidDataFromUserInput() {
         String simulatedInput = name + "\n" + lastName + "\n" + street + "\n" + city + "\n" + state + "\n" + zip + "\n" + email + "\n" + phoneNumber + "\n";
         ByteArrayInputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
         System.setIn(inputStream);
 
-        AddressBook addressBook = new AddressBook();
-        addressBook.addAdressEntry();
+        AddressBook localAddressBook = new AddressBook();
 
-        ArrayList<AddressEntry> addressBookEntries = addressBook.getAdressBook();
-        AddressEntry lastEntry = addressBookEntries.get(addressBookEntries.size() - 1);
+        AddressEntry localEntry = localAddressBook.generateAddressEntryFromUserInput();
 
-        assertEquals(name, lastEntry.getName());
-        assertEquals(lastName, lastEntry.getLastName());
-        assertEquals(street, lastEntry.getStreet());
-        assertEquals(city, lastEntry.getCity());
-        assertEquals(state, lastEntry.getState());
-        assertEquals(zip, lastEntry.getZip());
-        assertEquals(email, lastEntry.getEmail());
-        assertEquals(phoneNumber, lastEntry.getPhoneNumber());
+        assertEquals(name, localEntry.getName());
+        assertEquals(lastName, localEntry.getLastName());
+        assertEquals(street, localEntry.getStreet());
+        assertEquals(city, localEntry.getCity());
+        assertEquals(state, localEntry.getState());
+        assertEquals(zip, localEntry.getZip());
+        assertEquals(email, localEntry.getEmail());
+        assertEquals(phoneNumber, localEntry.getPhoneNumber());
 
     }
 
     @Test
-    void testAddressEntryWithInvalidDataThenValidData() {
+    void testAddressEntryWithInvalidDataThenValidDataFromUserInput() {
         String simulatedInput = "\n" + name + "\n" + "\n" + lastName + "\n" +  "\n" + street + "\n" + city + "\n" + state +
-                "\n" + "\n" + zip + "\n" + email + "\n" + "\n" + phoneNumber + "\n";
+                "\n" + "hola\n" + zip + "\n" + email + "\n" +"hola\n" + phoneNumber + "\n";
         ByteArrayInputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
         System.setIn(inputStream);
 
         AddressBook addressBook = new AddressBook();
-        addressBook.addAdressEntry();
 
-        ArrayList<AddressEntry> addressBookEntries = addressBook.getAdressBook();
-        AddressEntry lastEntry = addressBookEntries.get(addressBookEntries.size() - 1);
+        AddressEntry entry = addressBook.generateAddressEntryFromUserInput();
 
-        assertEquals(name, lastEntry.getName());
-        assertEquals(lastName, lastEntry.getLastName());
-        assertEquals(street, lastEntry.getStreet());
-        assertEquals(city, lastEntry.getCity());
-        assertEquals(state, lastEntry.getState());
-        assertEquals(zip, lastEntry.getZip());
-        assertEquals(email, lastEntry.getEmail());
-        assertEquals(phoneNumber, lastEntry.getPhoneNumber());
+        assertEquals(name, entry.getName());
+        assertEquals(lastName, entry.getLastName());
+        assertEquals(street, entry.getStreet());
+        assertEquals(city, entry.getCity());
+        assertEquals(state, entry.getState());
+        assertEquals(zip, entry.getZip());
+        assertEquals(email, entry.getEmail());
+        assertEquals(phoneNumber, entry.getPhoneNumber());
     }
 
     @Test
     void testAddAddressEntryAndSorting() {
-        String simulatedInput1 = name + "\n" + lastName + "\n" + street + "\n" + city + "\n" + state + "\n" + zip + "\n" + email + "\n" + phoneNumber + "\n";
-        String simulatedInput2 = nameVersionTwo + "\n" + lastNameVersionTwo + "\n" + streetVersionTwo + "\n" + cityVersionTwo + "\n" + stateVersionTwo + "\n" + zipVersionTwo + "\n" + emailVersionTwo + "\n" + phoneNumberVersionTwo + "\n";
 
         AddressBook addressBook = new AddressBook();
 
-        ByteArrayInputStream inputStream1 = new ByteArrayInputStream(simulatedInput1.getBytes());
-        System.setIn(inputStream1);
-        addressBook.addAdressEntry();
-        System.out.println("First address entry added.");
+        AddressEntry firstEntry = new AddressEntry();
+        firstEntry.setName(name);
+        firstEntry.setLastName(lastName);
+        firstEntry.setStreet(street);
+        firstEntry.setCity(city);
+        firstEntry.setState(state);
+        firstEntry.setZip(zip);
+        firstEntry.setEmail(email);
+        firstEntry.setPhoneNumber(phoneNumber);
 
-        ByteArrayInputStream inputStream2 = new ByteArrayInputStream(simulatedInput2.getBytes());
-        System.setIn(inputStream2);
-        addressBook.addAdressEntry();
-        System.out.println("Second address entry added.");
+        addressBook.addAdressEntry(firstEntry);
+
+        AddressEntry secondEntry = new AddressEntry();
+        secondEntry.setName(nameVersionTwo);
+        secondEntry.setLastName(lastNameVersionTwo);
+        secondEntry.setStreet(streetVersionTwo);
+        secondEntry.setCity(cityVersionTwo);
+        secondEntry.setState(stateVersionTwo);
+        secondEntry.setZip(zipVersionTwo);
+        secondEntry.setEmail(emailVersionTwo);
+        secondEntry.setPhoneNumber(phoneNumberVersionTwo);
+
+        addressBook.addAdressEntry(secondEntry);
 
         ArrayList<AddressEntry> entries = addressBook.getAdressBook();
 
         assertEquals(2, entries.size());
 
-        AddressEntry firstEntry = entries.get(0);
-        AddressEntry secondEntry = entries.get(1);
+        AddressEntry firstPlace = entries.get(0);
+        AddressEntry secondPlace = entries.get(1);
 
-        assertTrue(firstEntry.getLastName().compareTo(secondEntry.getLastName()) < 0);
-        System.out.println("testAddAddressEntryAndSorting completed successfully.");
+        assertTrue(firstPlace.getLastName().compareTo(secondPlace.getLastName()) < 0);
+        addressBook.showAddressBook();
+
+    }
+
+    @Test
+    void testNotAllowingDuplicateEntries() {
+        AddressBook addressBook = new AddressBook();
+
+        AddressEntry firstEntry = new AddressEntry();
+        firstEntry.setName(name);
+        firstEntry.setLastName(lastName);
+        firstEntry.setStreet(street);
+        firstEntry.setCity(city);
+        firstEntry.setState(state);
+        firstEntry.setZip(zip);
+        firstEntry.setEmail(email);
+        firstEntry.setPhoneNumber(phoneNumber);
+
+        addressBook.addAdressEntry(firstEntry);
+
+        AddressEntry secondEntry = new AddressEntry();
+        secondEntry.setName(name);
+        secondEntry.setLastName(lastName);
+        secondEntry.setStreet(street);
+        secondEntry.setCity(city);
+        secondEntry.setState(state);
+        secondEntry.setZip(zip);
+        secondEntry.setEmail(email);
+        secondEntry.setPhoneNumber(phoneNumber);
+
+        addressBook.addAdressEntry(secondEntry);
+
+        ArrayList<AddressEntry> entries = addressBook.getAdressBook();
+
+        assertEquals(1, entries.size());
+
 
     }
 

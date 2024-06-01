@@ -56,11 +56,7 @@ public class AddressEntry extends Address {
 
     @Override
     public String toString() {
-        return "AddressEntry{" +
-                "name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", phone_number='" + phoneNumber + '\'' +
-                '}';
+        return this.name + " " + this.lastName + "\n" +this.getStreet() + "\n" + this.getCity() + ", " + this.getState() + ", zip: " + this.getZip() + "\n" +
+                this.email + "\n" + this.phoneNumber + "\n";
     }
 }

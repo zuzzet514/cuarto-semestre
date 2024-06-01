@@ -14,33 +14,29 @@ public class AddressBook {
 
     private InputReader reader = new InputReader();
 
-    public void addAdressEntry() {
-        AddressEntry newEntry = readAddressEntry();
-        adressBook.add(newEntry);
-        sortAddressBook();
+    public void addAdressEntry(AddressEntry newEntry) {
+        if (isNotDuplicated(newEntry)) {
+            adressBook.add(newEntry);
+            sortAddressBook();
+        }
     }
-
-    public void addAddressEntryFromFile() {}
 
     public void searchAddressEntry() {}
 
     public void deleteAddressEntry() {}
 
-    public void showAddressBook() {}
-
+    public void showAddressBook() {
+        for (int i = 0; i < adressBook.size(); i++) {
+            System.out.print((i+1) + ": ");
+            System.out.println(adressBook.get(i));
+        }
+    }
 
     public ArrayList<AddressEntry> getAdressBook() {
         return adressBook;
     }
 
-    private boolean isNumericDataValid(String data) {
-        return data != null && data.matches("\\d+");
-    }
-
-    private boolean isDataNotEmpty(String data) {
-        return data != null && !data.trim().isEmpty();
-    }
-    private AddressEntry readAddressEntry() {
+    public AddressEntry generateAddressEntryFromUserInput() {
 
         AddressEntry newAddressEntry = new AddressEntry();
 
@@ -72,6 +68,41 @@ public class AddressBook {
         newAddressEntry.setPhoneNumber(phoneNumber);
 
         return newAddressEntry;
+    }
+
+    private boolean isNumericDataValid(String data) {
+        return data != null && data.matches("\\d+");
+    }
+
+    private boolean isDataNotEmpty(String data) {
+        return data != null && !data.trim().isEmpty();
+    }
+
+    private boolean isNotDuplicated(AddressEntry entry) {
+        boolean comparingNames;
+        boolean comparingLastNames;
+        boolean comparingStreets;
+        boolean comparingCities;
+        boolean comparingStates;
+        boolean comparingZips;
+        boolean comparingEmails;
+        boolean comparingPhoneNumbers;
+
+        for (AddressEntry existingEntry : adressBook) {
+            comparingNames = existingEntry.getName().equalsIgnoreCase(entry.getName());
+            comparingLastNames = existingEntry.getLastName().equalsIgnoreCase(entry.getLastName());
+            comparingStreets = existingEntry.getStreet().equalsIgnoreCase(entry.getStreet());
+            comparingCities = existingEntry.getCity().equalsIgnoreCase(entry.getCity());
+            comparingStates = existingEntry.getState().equalsIgnoreCase(entry.getState());
+            comparingZips = existingEntry.getZip().equalsIgnoreCase(entry.getZip());
+            comparingEmails = existingEntry.getEmail().equalsIgnoreCase(entry.getEmail());
+            comparingPhoneNumbers = existingEntry.getPhoneNumber().equalsIgnoreCase(entry.getPhoneNumber());
+
+            if (comparingNames && comparingLastNames && comparingStreets && comparingCities && comparingStates && comparingZips && comparingEmails && comparingPhoneNumbers) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private void sortAddressBook() {
